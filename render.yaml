@@ -1,6 +1,6 @@
 
 databases:
-  - name: dhis2-db
+  - name: nmdr-db
     databaseName: dhis2
     user: dhis
     plan: Basic-1gb  # Options: starter, standard-v1, pro-v1, pro-plus-v1
@@ -8,7 +8,7 @@ databases:
 
 services:
   - type: web
-    name: dhis2-app
+    name: nmdr-app
     env: docker
     plan: Standard # Options: starter, standard, pro, pro-plus, pro-max, pro-ultra
     region: oregon
