@@ -1,0 +1,55 @@
+databases:
+  - name: dhis2-db
+    databaseName: dhis2
+    user: dhis
+    plan: standard  # Recommended: standard or pro for production
+    region: oregon
+    postgresMajorVersion: 15
+
+services:
+  - type: web
+    name: dhis2-app
+    env: docker
+    plan: standard  # Minimum recommended for DHIS2
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    
+    # Disk for persistent file storage
+    disk:
+      name: dhis2-files
+      mountPath: /opt/dhis2/files
+      sizeGB: 10  # Adjust based on your needs
+    
+    # Environment variables
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dhis2-db
+          property: connectionString
+      
+      - key: SERVER_URL
+        value: https://icfsl-nmdr.onrender.com
+      
+      - key: ENCRYPTION_PASSWORD
+        generateValue: true
+      
+      # Optional: Set initial admin password
+      # - key: DHIS2_ADMIN_PASSWORD
+      #   sync: false
+      #   value: YourSecurePassword123!
+    
+    # Health check configuration
+    healthCheckPath: /api/system/ping
+    
+    # Increase startup timeout for DHIS2 initialization
+    startCommand: /usr/local/bin/startup.sh
+    
+    # Auto-deploy settings
+    autoDeploy: true
+    
+    # Build filter (optional)
+    buildFilter:
+      paths:
+        - Dockerfile
+        - dhis.conf
+        - startup.sh
