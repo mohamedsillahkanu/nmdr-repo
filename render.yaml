@@ -3,14 +3,14 @@ databases:
   - name: dhis2-db
     databaseName: dhis2
     user: dhis
-    plan: standard  # Options: starter, standard-v1, pro-v1, pro-plus-v1
+    plan: Basic-2gb  # Options: starter, standard-v1, pro-v1, pro-plus-v1
     region: oregon
 
 services:
   - type: web
     name: dhis2-app
     env: docker
-    plan: basic-1gb # Options: starter, standard, pro, pro-plus, pro-max, pro-ultra
+    plan: standard # Options: starter, standard, pro, pro-plus, pro-max, pro-ultra
     region: oregon
     dockerfilePath: ./Dockerfile
     
