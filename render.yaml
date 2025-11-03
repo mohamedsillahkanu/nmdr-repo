@@ -41,9 +41,6 @@ services:
     # Health check configuration
     healthCheckPath: /api/system/ping
     
-    # Increase startup timeout for DHIS2 initialization
-    startCommand: /usr/local/bin/startup.sh
-    
     # Auto-deploy settings
     autoDeploy: true
     
