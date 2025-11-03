@@ -1,16 +1,16 @@
+
 databases:
   - name: dhis2-db
     databaseName: dhis2
     user: dhis
-    plan: standard  # Recommended: standard or pro for production
+    plan: starter  # Options: starter, standard-v1, pro-v1, pro-plus-v1
     region: oregon
-    postgresMajorVersion: 15
 
 services:
   - type: web
     name: dhis2-app
     env: docker
-    plan: standard  # Minimum recommended for DHIS2
+    plan: starter  # Options: starter, standard, pro, pro-plus, pro-max, pro-ultra
     region: oregon
     dockerfilePath: ./Dockerfile
     
