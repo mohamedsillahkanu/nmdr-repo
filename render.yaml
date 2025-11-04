@@ -1,16 +1,15 @@
-
 databases:
   - name: nmdr22-db
     databaseName: dhis2
     user: dhis
-    plan: Basic-1gb  # Options: starter, standard-v1, pro-v1, pro-plus-v1
+    plan: Basic-1gb
     region: oregon
 
 services:
   - type: web
-    name: icfslnmdr
+    name: nmdr22-app
     env: docker
-    plan: Standard # Options: starter, standard, pro, pro-plus, pro-max, pro-ultra
+    plan: Standard
     region: oregon
     dockerfilePath: ./Dockerfile
     
@@ -18,35 +17,23 @@ services:
     disk:
       name: dhis2-files
       mountPath: /opt/dhis2/files
-      sizeGB: 10  # Adjust based on your needs
+      sizeGB: 10
     
     # Environment variables
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: dhis2-db
+          name: nmdr22-db
           property: connectionString
       
       - key: SERVER_URL
-        value: https://sl.icf.nmdr.onrender.com
+        value: https://nmdr22-app.onrender.com
       
       - key: ENCRYPTION_PASSWORD
         generateValue: true
-      
-      # Optional: Set initial admin password
-      # - key: DHIS2_ADMIN_PASSWORD
-      #   sync: false
-      #   value: YourSecurePassword123!
     
     # Health check configuration
     healthCheckPath: /api/system/ping
     
     # Auto-deploy settings
     autoDeploy: true
-    
-    # Build filter (optional)
-    buildFilter:
-      paths:
-        - Dockerfile
-        - dhis.conf
-        - startup.sh
