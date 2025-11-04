@@ -7,7 +7,7 @@ databases:
 
 services:
   - type: web
-    name: nmdr22-app
+    name: nmdr-icf-sl
     env: docker
     plan: Standard
     region: oregon
