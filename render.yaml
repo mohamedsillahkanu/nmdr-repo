@@ -28,7 +28,7 @@ services:
           property: connectionString
       
       - key: SERVER_URL
-        value: https://nmdr22-app.onrender.com.
+        value: https://sl.icf.nmdr.onrender.com
       
       - key: ENCRYPTION_PASSWORD
         generateValue: true
