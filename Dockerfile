@@ -7,7 +7,7 @@ ENV JAVA_OPTS="-Ddhis2.home=/opt/dhis2"
 
 # Install required packages
 RUN apt-get update && \
-    apt-get install -y wget postgresql-client gettext-base && \
+    apt-get install -y wget postgresql-client gettext-base python3 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
