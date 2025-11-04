@@ -8,7 +8,7 @@ databases:
 
 services:
   - type: web
-    name: nmdr22-app
+    name: icfslnmdr
     env: docker
     plan: Standard # Options: starter, standard, pro, pro-plus, pro-max, pro-ultra
     region: oregon
